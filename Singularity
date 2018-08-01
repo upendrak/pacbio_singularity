@@ -6,7 +6,11 @@ MAINTAINER Upendra Devisetty <upendra@cyverse.org>
 version="5.1.0.26412" description="This Dockerfile is for both isoseq"
 
 %post
-apt-get update && apt-get install -y wget unzip rsync
+apt-get update && apt-get install -y wget unzip rsync locales
+echo "LC_ALL=en_US.UTF-8" >> /etc/environment
+echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
+echo "LANG=en_US.UTF-8" > /etc/locale.conf
+locale-gen en_US.UTF-8
 wget https://downloads.pacbcloud.com/public/software/installers/smrtlink_5.1.0.26412.zip
 unzip -P 9rVkq3HT smrtlink_5.1.0.26412.zip && rm smrtlink_5.1.0.26412.zip
 SMRT_ROOT=/smrtlink
